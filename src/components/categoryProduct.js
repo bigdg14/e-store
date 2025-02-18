@@ -20,58 +20,66 @@ const CategoryProduct = ({
     const { addProduct } = useContext(CartContext);
 
     return (
-        <ProductInfoArticle>
-            <ProductTitle>
-                <Link to={`/products/${id}`}>{title}</Link>
-            </ProductTitle>
+      <ProductInfoArticle>
+        <ProductTitle>
+          <Link to={`/products/${id}`}>{title}</Link>
+        </ProductTitle>
 
-            <figure>
-                <ProductImageContainer>
-                    <ProductImage src={`/assets/${image}`} alt={title} />
-                </ProductImageContainer>
-            </figure>
+        <figure>
+          <ProductImageContainer>
+            <ProductImage src={`/assets/${image}`} alt={title} />
+          </ProductImageContainer>
+        </figure>
 
-            <aside>
-                <ProductInfo>
-                    <ProductInfoHeader>Dimensions</ProductInfoHeader>
-                    <label>{specs.dimensions}</label>
-                </ProductInfo>
+        <aside>
+          <ProductInfo>
+            <ProductInfoHeader>Dimensions</ProductInfoHeader>
+            <label>{specs.dimensions}</label>
+          </ProductInfo>
 
-                {specs.capacity && (
-                    <ProductInfo>
-                        <ProductInfoHeader>Capacity</ProductInfoHeader>
-                        <label>{specs.capacity}</label>
-                    </ProductInfo>
-                )}
+          {specs.capacity && (
+            <ProductInfo>
+              <ProductInfoHeader>Capacity</ProductInfoHeader>
+              <label>{specs.capacity}</label>
+            </ProductInfo>
+          )}
 
-                <ProductInfo>
-                    <ProductInfoHeader>Features</ProductInfoHeader>
-                    <ul>
-                        {features?.map((f, i) => {
-                            return <ProductInfoListItem key={`feature${i}`}>{f}</ProductInfoListItem>;
-                        })}
-                    </ul>
-                </ProductInfo>
-            </aside>
+          <ProductInfo>
+            <ProductInfoHeader>Features</ProductInfoHeader>
+            <ul>
+              {features?.map((f, i) => {
+                return (
+                  <ProductInfoListItem key={`feature${i}`}>
+                    {f}
+                  </ProductInfoListItem>
+                );
+              })}
+            </ul>
+          </ProductInfo>
+        </aside>
 
-            <aside>
-                <ProductInfoFinancePrice>
-                    &pound;{price}
-                </ProductInfoFinancePrice>
+        <aside>
+          <ProductInfoFinancePrice>&#36;{price}</ProductInfoFinancePrice>
 
-                <ProductInfoStock>
-                    <ProductInfoStockLabel>Stock Level: {stock}</ProductInfoStockLabel>
-                    <ProductInfoStockLabel>FREE Delivery</ProductInfoStockLabel>
-                </ProductInfoStock>
+          <ProductInfoStock>
+            <ProductInfoStockLabel>Stock Level: {stock}</ProductInfoStockLabel>
+            <ProductInfoStockLabel>FREE Delivery</ProductInfoStockLabel>
+          </ProductInfoStock>
 
-                <ProductInfoAction>
-                    <ProductInfoActionButton onClick={() => navigate(`/products/${id}`)}>
-                        View Product
-                    </ProductInfoActionButton>
-                    <ProductInfoActionButton onClick={() => addProduct({id, title, price})}>Add to Basket</ProductInfoActionButton>
-                </ProductInfoAction>
-            </aside>
-        </ProductInfoArticle>
+          <ProductInfoAction>
+            <ProductInfoActionButton
+              onClick={() => navigate(`/products/${id}`)}
+            >
+              View Product
+            </ProductInfoActionButton>
+            <ProductInfoActionButton
+              onClick={() => addProduct({ id, title, price })}
+            >
+              Add to Basket
+            </ProductInfoActionButton>
+          </ProductInfoAction>
+        </aside>
+      </ProductInfoArticle>
     );
 };
 
